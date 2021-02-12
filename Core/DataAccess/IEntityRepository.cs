@@ -1,11 +1,14 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataAccess.Abstract
+
+//isim uzayı
+namespace Core.DataAccess
 {
+    //Core katmanı diğer katmanları referans almaz
     //interface
     //bu yapı generic
     //IEntity  interface  newlenemez
