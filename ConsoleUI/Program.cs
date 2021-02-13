@@ -11,20 +11,14 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-
-           int a = 21;
-            if (a==21)
-            {
-                Console.WriteLine("Yazılım Geliştirici Yetiştirme Kampı 11. Gün Başlıyor ");
-            }
-            else
-            {
-                Console.WriteLine("Bekle dostum acele etme");
-            }
-
-
+            //Data Transformation Object
             //ProductTest();
             //IoC
+            //CategoryTest();
+        }
+
+        private static void CategoryTest()
+        {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
             foreach (var category in categoryManager.GetAll())
@@ -37,9 +31,9 @@ namespace ConsoleUI
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
-            foreach (var product in productManager.GetByUnitPrice(50, 100))
+            foreach (var product in productManager.GetProductDetails())
             {
-                Console.WriteLine(product.ProductName);
+                Console.WriteLine(product.ProductName +"/"+product.CategoryName);
             }
         }
     }
