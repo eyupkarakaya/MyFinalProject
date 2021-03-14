@@ -26,3 +26,16 @@ namespace Core.DataAccess
         void Delete(T entity);
     }
 }
+
+
+
+
+// Bir method bir değer döndürebilirsinin birden fazla için encapsitoin unutma
+//business codes
+//Web API console için olur sadece
+//restful(JSON) farklı uygulamalar için
+//request -istek
+//responce- kelime
+//validation-doğrulama kodu
+//Business kodunu ayrı doğrulama kodu ayrı yazılır
+//Cross Cutting Concerns- uygulamayı dikine kesen

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Business.Abstract;
-using Business.Concrete;
-using DataAccess.Concrete.EntityFramework;
+﻿using Business.Abstract;
 using Entities.Concrete;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 
 namespace WebAPI.Controllers
 {
@@ -15,31 +9,28 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        // Gevşek bağlılık - Loosely Coupled
-        // IoC
+        //IoC Contanier - nversion of control
         IProductService _productService;
+
         public ProductsController(IProductService productService)
         {
             _productService = productService;
         }
 
-
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            //Dependency chain bağlılık zinciri
-            //Swagger
+            Thread.Sleep(3000);
+            //swagger -> döküman yönetimi için bakabiliriz.
             var result = _productService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
             }
-
             return BadRequest(result);
         }
 
         [HttpGet("getbyid")]
-
         public IActionResult GetById(int id)
         {
             var result = _productService.GetById(id);
@@ -49,16 +40,30 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("add")]
-        public IActionResult Add(Product product)
+
+        [HttpGet("getbycategory")]
+        public IActionResult GetByCategory(int categoryId)
         {
-            var result = _productService.Add(product);
+            var result = _productService.GetAllByCategoryId(categoryId);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-    }
 
+        [HttpPost("add")]
+        public IActionResult Post(Product product)
+        {
+            var result = _productService.Add(product);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
+    }
 }
