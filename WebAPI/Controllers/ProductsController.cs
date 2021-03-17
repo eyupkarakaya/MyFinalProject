@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             //swagger -> döküman yönetimi için bakabiliriz.
             var result = _productService.GetAll();
             if (result.Success)
